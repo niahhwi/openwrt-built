@@ -92,4 +92,4 @@ jobs:
 
           name: openwrt-image
 
-          path: openwrt/bin/targets/bcm27xx/bcm2711/
+          path: openwrt/bin/targets/bcm27xx/bcm2711/*.img.gz
