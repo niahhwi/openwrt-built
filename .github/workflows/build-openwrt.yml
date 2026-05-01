@@ -79,8 +79,8 @@ jobs:
         run: |
 
           cd openwrt
-
-          make -j$(nproc) V=s
+          make -j$(nproc) V=s 2>&1 | tee build.log || true
+          grep -i "error\|ERROR" build.log | grep -v "Wno-error" | tail -50
 
  
 
