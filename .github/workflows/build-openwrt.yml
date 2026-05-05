@@ -82,7 +82,15 @@ jobs:
           make -j$(nproc) V=s 2>&1 | tee build.log || true
           grep -i "error\|ERROR" build.log | grep -v "Wno-error" | tail -50
 
-      
+
+
+      - name: Build image
+        run: |
+          cd openwrt
+          make target/install V=s 2>&1 | tee image.log || true
+          make package/index V=s 2>&1 || true
+
+          
       - name: List output files
         run: |
           find openwrt/bin/targets/bcm27xx/bcm2711/ -type f | sort
