@@ -82,7 +82,12 @@ jobs:
           make -j$(nproc) V=s 2>&1 | tee build.log || true
           grep -i "error\|ERROR" build.log | grep -v "Wno-error" | tail -50
 
- 
+      
+      - name: List output files
+        run: |
+          find openwrt/bin/targets/bcm27xx/bcm2711/ -type f | sort
+       
+             
 
       - name: Upload image
 
@@ -92,4 +97,4 @@ jobs:
 
           name: openwrt-image
 
-          path: openwrt/bin/targets/bcm27xx/bcm2711/*.img.gz
+          path: openwrt/bin/targets/bcm27xx/bcm2711/
